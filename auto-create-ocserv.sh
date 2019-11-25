@@ -1,5 +1,5 @@
 #!/bin/bash
-ocservIp="47.240.55.17"
+ocservIp="这里写你的VPS-IP"
 domainName="gyp.com"
 
 sleepInt=1
@@ -47,7 +47,7 @@ echo '****生成CA证书****'
 certtool --generate-self-signed --load-privkey ca-key.pem --template ca.tmpl --outfile ca-cert.pem
 
 echo '****server.tmpl****'
-echo '''cn = "47.240.55.17"''' > server.tmpl
+echo '''cn = "这里写你的VPS-IP"''' > server.tmpl
 echo '''organization = "gyp.com"''' >> server.tmpl
 echo '''expiration_days = 3650''' >> server.tmpl
 echo '''signing_key''' >> server.tmpl
@@ -89,3 +89,8 @@ ufw allow 443
 ufw allow 22
 ufw enable
 ufw reload
+
+echo '****启动服务****'
+sleep $sleepInt
+ocserv -f -d 1
+echo '****打开你手机上的Cisco Anyconnect新建一个VPN，添加服务器IP就是你的vps的 IP:端口****'
